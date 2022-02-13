@@ -57,6 +57,8 @@ namespace TrackerLibrary.DataAccess
 
         }
 
+
+
         public List<PersonModel> GetPerson_All()
         {
             return PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
@@ -113,6 +115,10 @@ namespace TrackerLibrary.DataAccess
             tournaments.Add(model);
             tournaments.SaveToTournamentFile(TournamentFile);
 
+        }
+        public void UpdateMatchup(MatchupModel model)
+        {
+            model.UpdateMatchupToFile();
         }
     }
 }
