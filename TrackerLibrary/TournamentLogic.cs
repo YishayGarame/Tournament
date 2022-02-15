@@ -129,6 +129,9 @@ namespace TrackerLibrary
             MarkWinnerInMatchups(toScore);
             AdvanceWinners(toScore, model);
 
+
+            // TODO check wht dont update the matchups
+            // updateMathup down below check the values with break point
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
 
             //the same as 
