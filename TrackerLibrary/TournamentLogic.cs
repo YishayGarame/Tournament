@@ -119,26 +119,48 @@ namespace TrackerLibrary
             {
                 foreach (MatchupModel rm in round)
                 {
-                    if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    /// *** 
+                    //if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    if ((rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
                     {
                         toScore.Add(rm);
                     }
                 }
             }
-
+            
             MarkWinnerInMatchups(toScore);
             AdvanceWinners(toScore, model);
 
 
             // TODO check wht dont update the matchups
             // updateMathup down below check the values with break point
-            toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
 
-            //the same as 
-            //foreach (MatchupModel x in toScore)
-            //{
-            //    GlobalConfig.Connection.UpdateMatchup(x);
-            //}
+            /****** Script for SelectTopNRows command from SSMS  ******/
+            //            SELECT TOP(1000) [id]
+            //                ,[TournamentId]
+            //            ,[WinnerId]
+            //            ,[MatchupRound]
+            //            FROM[Tournaments].[dbo].[Matchups]
+
+            //            where TournamentId = 11
+
+            ///****** Script for SelectTopNRows command from SSMS  ******/
+            //            SELECT TOP(1000) [id]
+            //                ,[MatchupId]
+            //            ,[ParentMatchupId]
+            //            ,[TeamCompetingId]
+            //            ,[Score]
+            //            FROM[Tournaments].[dbo].[MatchupEntries]
+            //            where MatchupId between 15 and 16
+
+
+            //toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+
+            //the same as
+            foreach (MatchupModel x in toScore)
+            {
+                GlobalConfig.Connection.UpdateMatchup(x);
+            }
         }
 
         private static void AdvanceWinners(List<MatchupModel> models, TournamentModel tournament)
@@ -212,7 +234,9 @@ namespace TrackerLibrary
                     {
                         throw new Exception("We do not allow ties games.");
                     }
-                } 
+                }
+
+               
             }
 
         }

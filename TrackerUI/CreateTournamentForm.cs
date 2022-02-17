@@ -130,6 +130,7 @@ namespace TrackerUI
 
             TournamentModel tm = new TournamentModel();
 
+            // TODO add validation for tournament name
             tm.TournamentName = tournamentNameValue.Text;
             tm.EntryFee = fee;
 

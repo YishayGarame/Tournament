@@ -125,7 +125,6 @@ namespace TrackerLibrary.DataAccess
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
-
             }
         }
         private void SaveTournamentRounds(IDbConnection connection, TournamentModel model)
@@ -178,6 +177,10 @@ namespace TrackerLibrary.DataAccess
                         p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                         connection.Execute("dbo.spMatchupEntries_Insert", p, commandType: CommandType.StoredProcedure);
+
+                        // i think that might be the solution 
+                        // TODO that's the solution for the entry id = 0 
+                        entry.Id = p.Get<int>("@id");
                     }
                 }
             }

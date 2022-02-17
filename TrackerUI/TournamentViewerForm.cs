@@ -200,12 +200,12 @@ namespace TrackerUI
         private void scoreButton_Click(object sender, EventArgs e)
         {
             string errorMessage = ValidateData();
-            if (errorMessage.Length > 0 )
+            if (errorMessage.Length > 0)
             {
                 MessageBox.Show($"Input Error: {errorMessage}");
                 return;
             }
-            MatchupModel m = (MatchupModel) matchupListBox.SelectedItem;
+            MatchupModel m = (MatchupModel)matchupListBox.SelectedItem;
             double teamOneScore = 0;
             double teamTwoScore = 0;
 
@@ -219,7 +219,7 @@ namespace TrackerUI
                         if (m.Entries[0].TeamCompeting != null)
                         {
 
-                            bool scoreValid = double.TryParse(teamOneScoreValue.Text, out  teamOneScore);
+                            bool scoreValid = double.TryParse(teamOneScoreValue.Text, out teamOneScore);
 
                             if (scoreValid)
                             {
@@ -268,7 +268,95 @@ namespace TrackerUI
             LoadMatchups((int)roundDropDown.SelectedItem);
 
         }
-
-
     }
+
 }
+
+
+// Old code for scoreButton_Click
+
+// I found some bug in TournamentLogic --> UpdateTournamentResult check the *** comment
+// It does not update the games that already scored
+
+//private void scoreButton_Click(object sender, EventArgs e)
+//{
+//    MatchupModel m = (MatchupModel)matchupListBox.SelectedItem;
+//    double teamOneScore = 0;
+//    double teamTwoScore = 0;
+//    foreach (MatchupEntryModel me in m.Entries)
+//    {
+//        for (int i = 0; i < m.Entries.Count; i++)
+//        {
+//            if (i == 0)
+//            {
+//                if (m.Entries[0].TeamCompeting != null)
+//                {
+//                    bool scoreValid = double.TryParse(teamOneScoreValue.Text, out teamOneScore);
+//                    if (scoreValid)
+//                    {
+//                        m.Entries[0].Score = teamOneScore;
+//                    }
+//                    else
+//                    {
+//                        MessageBox.Show("Please enter a valid score for team 1");
+//                        return;
+//                    }
+//                }
+//            }
+//            if (i == 1)
+//            {
+//                if (m.Entries[1].TeamCompeting != null)
+//                {
+//                    bool scoreValid = double.TryParse(teamTwoScoreValue.Text, out teamTwoScore);
+//                    if (scoreValid)
+//                    {
+//                        m.Entries[1].Score = teamTwoScore;
+//                    }
+//                    else
+//                    {
+//                        MessageBox.Show("Please enter a valid score for team 2");
+//                        return;
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    if (teamOneScore > teamTwoScore)
+//    {
+//        // Team One wins
+//        m.Winner = m.Entries[0].TeamCompeting;
+//    }
+//    else if (teamTwoScore > teamOneScore)
+//    {
+//        m.Winner = m.Entries[1].TeamCompeting;
+//    }
+//    else
+//    {
+//        MessageBox.Show("I do not handle tie games.");
+//    }
+
+//    foreach (List<MatchupModel> round in tournament.Rounds)
+//    {
+//        foreach (MatchupModel rm in round)
+//        {
+//            foreach (MatchupEntryModel me in rm.Entries)
+//            {
+//                if (me.ParentMatchup != null)
+//                {
+//                    if (me.ParentMatchup.Id == m.Id)
+//                    {
+//                        me.TeamCompeting = m.Winner;
+//                        GlobalConfig.Connection.UpdateMatchup(rm);
+
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+//    LoadMatchups((int)roundDropDown.SelectedItem);
+
+//    GlobalConfig.Connection.UpdateMatchup(m);
+
+
+//}
