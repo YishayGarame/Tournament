@@ -132,6 +132,15 @@ namespace TrackerUI
         private void createTeamButton_Click(object sender, EventArgs e)
         {
             TeamModel teamModel = new TeamModel();
+            // TODO - check for name -------------------- solved
+            string teamNameValidation = teamNameValue.Text;
+            if (teamNameValidation.Length == 0)
+            {
+                MessageBox.Show("You need to enter a valid Team Name.",
+                    "Invalid Name",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             teamModel.TeamName = teamNameValue.Text;
             teamModel.TeamMembers = selectedTeamMembers;
 
@@ -139,7 +148,6 @@ namespace TrackerUI
 
             callingForm.TeamComplete(teamModel);
             this.Close();
-            // TODO - check for name team that is not empty in both sql and text
         }
     }
 }

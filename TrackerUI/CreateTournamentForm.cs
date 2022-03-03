@@ -130,13 +130,29 @@ namespace TrackerUI
 
             TournamentModel tm = new TournamentModel();
 
-            // TODO add validation for tournament name
+            // TODO add validation for tournament name -------------------- solved
+            string tournamentNameValidation = tournamentNameValue.Text;
+            if (tournamentNameValidation.Length == 0)
+            {
+                MessageBox.Show("You need to enter a valid Tournament Name.",
+                    "Invalid Name",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             tm.TournamentName = tournamentNameValue.Text;
             tm.EntryFee = fee;
 
             tm.Prizes = selectedPrizes;
-            tm.EnteredTeams = selectedTeams;
 
+            // TODO add validation for tournament selected teams -------------------- solved
+            if (selectedTeams.Count < 2)
+            {
+                MessageBox.Show("You need to enter at least two teams.",
+                    "Invalid Team list",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            tm.EnteredTeams = selectedTeams;
             // Wire our matchup
             TournamentLogic.CreateRounds(tm);
 

@@ -24,7 +24,7 @@ namespace TrackerUI
         {
             InitializeComponent();
             tournament = tournamentModel;
-
+            // TODO - check why it doesnt call the Tournament_OnTournamentComplete
             tournament.OnTournamentComplete += Tournament_OnTournamentComplete;     
             WireUpLists();
 

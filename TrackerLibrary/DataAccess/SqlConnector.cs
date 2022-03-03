@@ -179,7 +179,7 @@ namespace TrackerLibrary.DataAccess
                         connection.Execute("dbo.spMatchupEntries_Insert", p, commandType: CommandType.StoredProcedure);
 
                         // i think that might be the solution 
-                        // TODO that's the solution for the entry id = 0 
+                        // TODO that's the solution for the entry id = 0 -------------------- solved
                         entry.Id = p.Get<int>("@id");
                     }
                 }

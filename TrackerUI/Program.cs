@@ -29,11 +29,9 @@ namespace TrackerUI
   
 
 // TODO check the email stuff
-// TODO check the prize store procedure error
+// TODO check the prize store procedure error ------------------ solved
 // TODO check the full tournament if i can change winners and see what is happening
 // TODO fix windows size
-// TODO check the tournament name if empty
-// TODO sqlConnector line 182
 // TODO check why it doesnt close the event handler
 
 

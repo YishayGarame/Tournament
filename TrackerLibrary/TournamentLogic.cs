@@ -133,28 +133,7 @@ namespace TrackerLibrary
             MarkWinnerInMatchups(toScore);
             AdvanceWinners(toScore, model);
 
-
-            // TODO check wht dont update the matchups
-            // updateMathup down below check the values with break point
-
-            /****** Script for SelectTopNRows command from SSMS  ******/
-            //            SELECT TOP(1000) [id]
-            //                ,[TournamentId]
-            //            ,[WinnerId]
-            //            ,[MatchupRound]
-            //            FROM[Tournaments].[dbo].[Matchups]
-
-            //            where TournamentId = 11
-
-            ///****** Script for SelectTopNRows command from SSMS  ******/
-            //            SELECT TOP(1000) [id]
-            //                ,[MatchupId]
-            //            ,[ParentMatchupId]
-            //            ,[TeamCompetingId]
-            //            ,[Score]
-            //            FROM[Tournaments].[dbo].[MatchupEntries]
-            //            where MatchupId between 15 and 16
-
+            // TODO check why dont update the matchups --------------------- solved
 
             //toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
 
@@ -165,10 +144,12 @@ namespace TrackerLibrary
             }
 
             int endingRound = model.CheckCurrentRound();
-            if (endingRound > startingRound)
-            {
-                model.AlertUsersToNewRound();
-            }
+
+            // TODO - email things
+            //if (endingRound > startingRound)
+            //{
+            //    model.AlertUsersToNewRound();
+            //}
         }
 
         public static void AlertUsersToNewRound(this TournamentModel model)
@@ -310,6 +291,7 @@ namespace TrackerLibrary
                     }
                 }
 
+                // TODO - email things
                 //EmailLogic.SendEmail(new List<string>(),bcc,subject, body.ToString());
 
                 // Complete Tournament
