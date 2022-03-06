@@ -33,6 +33,7 @@ namespace TrackerUI
 // TODO check the full tournament if i can change winners and see what is happening
 // TODO fix windows size
 // TODO check why it doesnt close the event handler
+//check
 
 
 
